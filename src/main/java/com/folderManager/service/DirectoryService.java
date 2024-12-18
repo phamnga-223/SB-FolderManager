@@ -52,10 +52,7 @@ public class DirectoryService {
 		while (idParent != 0) {
 			Directory parent = directoryRepository.findById(idParent).get();
 
-			if (!result.equals("")) {
-				result += "/";
-			}
-			result = parent.getName() + result;
+			result = parent.getName() + "/" + result;
 			idParent = parent.getIdParent();
 		}
 
