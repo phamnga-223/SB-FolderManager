@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<!--
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	-->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/folders.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-md-4 col-xl-3 bd-sidebar">
+				<h3 th:text="${path}"></h3>
+				
+				<ul id="myUL" class="list-group">
+					<li th:each="file : ${listDirectory}" href="#" th:id="${ file.id }" 
+						class="text-decoration-none list-group-item list-group-item-action border-0">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+						<i th:if="${#strings.equals(file.type, 'DIR')}" class="fa fa-folder text-warning"></i>
+						<i th:if="${#strings.equals(file.type, 'FIL')}" class="fa fa-file"></i>
+						<span class="caret" th:text="${ file.name }"></span>					
+					</li>
+				</ul>
+			</div>
+			
+			<div class="col-12 col-md-8 col-xl-9 py-md-3 pl-md-5 bd-content">
+				<div>
+					<!-- List buttons -->
+					<div class="d-flex justify-content-end">
+						<form id="formButton">
+							<input name="id" hidden/>
+							<button class="btn btn-danger m-1" type="button" id="uploadFolder"
+								onclick="document.getElementById('folderUpload').click();">
+								<i class="fa fa-plus">Create</i>							
+							</button>
+							<input type="file" id="folderUpload" name="folder" class="d-none" webkitdirectory directory/>						
+							
+							<button type="button" id="uploadFile" class="btn btn-danger m-1"
+								onclick="document.getElementById('fileUpload').click();">
+								<i class="fa fa-upload">Upload</i>
+							</button>
+							<input type="file" id="fileUpload" name="file" class="d-none"/>
+							
+							<button class="btn btn-danger m-1 btnDownload" type="button">
+								<i class="fa fa-download">Download</i>										
+							</button>
+							<button class="btn btn-danger m-1 btnDelete" type="button">
+								<i class="fa fa-trash">Delete</i>
+							</button>
+						</form>
+					</div>
+				</div>
+				
+				<div id="details"></div>
+				
+				<!--
+
+					<div id="details" class="d-none">
+						<div id="nav-bar">
+															<span id="fullPath"></span>
+														</div>
+														
+														<div>
+															<table class="table-details" id="table-details">
+																<thead>
+																    <tr>
+																      	<th scope="col">File name</th>
+																      	<th scope="col">Updated on</th>
+																      	<th scope="col">Created Date</th>
+																		<th></th>
+																	</tr>
+																</thead>
+																<tbody>
+																    <tr class="row-details d-none">
+																      	<td class="name">
+																			<input type="checkbox" id="file-id" name="name">
+																			<label for="name"></label>
+																		</td>
+																		<td class="created"></td>
+																		<td class="updated"></td>
+																      	<td>
+																			<button type="button" class="btn btn-danger">Change folder</button>
+																		</td>
+																    </tr>
+																</tbody>
+															</table>
+														</div>
+														
+														<div class="d-flex justify-content-center">
+															<a type="button" href="#" class="btn btn-danger">
+																<i class="fa fa-arrow-left">Return to the previous folder</i>											
+															</a>
+														</div>
+					</div>
+				-->
+			</div>			
+			
+		</div>
+	</div>
+</body>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/folders.js"></script>
+<script src="js/details.js"></script>

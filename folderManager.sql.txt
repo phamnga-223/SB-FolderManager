@@ -1,0 +1,16 @@
+DROP DATABASE IF EXISTS ql_folder;
+
+CREATE DATABASE ql_folder;
+
+USE ql_folder;
+
+CREATE TABLE directory (
+	id INT AUTO_INCREMENT,
+	name VARCHAR(100),
+	type VARCHAR(10),
+	file LONGBLOB,
+	id_parent INT,
+	updated TIMESTAMP,
+	created TIMESTAMP,	
+	PRIMARY KEY(id)
+);
