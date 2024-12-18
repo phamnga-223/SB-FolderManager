@@ -43,6 +43,10 @@ public class DirectoryService {
 	public String findFullPath(int id) {
 		String result = "";
 
+		if (!directoryRepository.existsById(id)) {
+			return result;
+		}
+		
 		Directory file = directoryRepository.findById(id).get();
 		int idParent = file.getIdParent();
 		while (idParent != 0) {
